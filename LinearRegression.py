@@ -27,3 +27,7 @@ class linearRegression(torch.nn.Module):
             loss = mse_loss_function(predictions,labels)
             loss.backward()
             stochastic_gradient_descent.step()
+
+            
+            
+            
