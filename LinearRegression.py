@@ -12,7 +12,7 @@ class linearRegression(torch.nn.Module):
         predictions = self.lr_pytorch(input_to_predict)
         return predictions
             
-    def fit(self,inputs,outputs,epochs = 500, learning_rate = 0.01):                                 # Fit method to train on existing data
+    def fit(self,inputs,outputs,epochs = 10, learning_rate = 0.01):                                 # Fit method to train on existing data
         
         inputs = Variable(torch.from_numpy(np.array(inputs,dtype=np.float32).reshape(-1,1)))        # converting np.array to tensors for operations
         labels = Variable(torch.from_numpy(np.array(outputs,dtype=np.float32).reshape(-1,1))) 
