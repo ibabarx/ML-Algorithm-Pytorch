@@ -1,5 +1,6 @@
 import torch
 from torch.autograd import Variable
+import numpy as np
 
 class linearRegression(torch.nn.Module):            
     
@@ -17,17 +18,13 @@ class linearRegression(torch.nn.Module):
         inputs = Variable(torch.from_numpy(np.array(inputs,dtype=np.float32).reshape(-1,1)))        # converting np.array to tensors for operations
         labels = Variable(torch.from_numpy(np.array(outputs,dtype=np.float32).reshape(-1,1))) 
         
-        stochastic_gradient_descent = torch.optim.SGD(lr_pytorch_model.parameters(),learning_rate)  # instantiating SGD Gradient Descent 
+        stochastic_gradient_descent = torch.optim.SGD(self.lr_pytorch.parameters(),learning_rate)  # instantiating SGD Gradient Descent 
         mse_loss_function = torch.nn.MSELoss()                                                      # Instantiationg MSE Loss function
         
         for epoch in range(epochs):                                                                 # Training 
             stochastic_gradient_descent.zero_grad()
-            predictions = lr_pytorch_model(inputs)
+            predictions = self.lr_pytorch(inputs)
             
             loss = mse_loss_function(predictions,labels)
             loss.backward()
             stochastic_gradient_descent.step()
-
-            
-            
-            
